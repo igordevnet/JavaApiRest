@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/job")
@@ -22,7 +23,7 @@ public class JobController {
 
     @GetMapping()
     @RequestMapping("/one/{id}")
-    public JobPost getJob(
+    public Optional<JobPost> getJob(
             @PathVariable("id") int id
     ){
         return service.getJob(id);
@@ -34,6 +35,14 @@ public class JobController {
             @RequestBody JobPost newJob
     ) throws Exception {
         service.addJobPost(newJob);
+    }
+
+    @GetMapping
+    @RequestMapping("search")
+    public List<JobPost> searchByKeyword(
+            @RequestParam("keyword") String keyword
+    ) {
+        return service.search(keyword);
     }
 
     @PatchMapping
