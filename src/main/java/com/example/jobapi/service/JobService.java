@@ -19,8 +19,8 @@ public class JobService {
         return repo.findAll();
     }
 
-    public Optional<JobPost> getJob(int id) {
-        return repo.findById(id);
+    public Optional<JobPost> getJob(int postId) {
+        return repo.findById(postId);
     }
 
     public void addJobPost(JobPost jobPost) throws Exception {
